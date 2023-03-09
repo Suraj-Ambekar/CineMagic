@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-
+import { BrowserRouter, Route, Routes  } from 'react-router-dom';
 import { fetchDataFromApi } from './utils/api';
 import { useSelector, useDispatch } from 'react-redux';
 import { getApiConfiguration } from './store/homeSlice';
@@ -32,10 +32,23 @@ function App() {
 
 
   return (
-    <div className="App">
-      <h1>App</h1>
-      <h3>{url.results[0].original_title}</h3>
-    </div>
+    <BrowserRouter>
+      <Header />
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path="/:mediaType/:id" element={<Details />} />
+          <Route path="/search/:query" element={<SearchResult />} />
+          <Route path="/explore/:mediaType" element={<Explore />} />
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+      <Footer />
+    </BrowserRouter>
+
+
+    // <div className="App">
+    //   <h1>App</h1>
+    //   <h3>{url.results[0].original_title}</h3>
+    // </div>
   )
 }
 
