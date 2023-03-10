@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useFetch from '../../../hooks/useFetch';
 import { useSelector } from 'react-redux';
+import Img from "../../../components/lazyLoadImage/Img";
+import ContentWrapper from "../../../components/contentWrapper/ContentWrapper";
 
 const HeroBanner = () => {
 
@@ -26,10 +28,14 @@ const HeroBanner = () => {
     }
   return (
     <div className='heroBanner'>
+        {!loading && 
         <div className='backdrop-img'>
-            {/* , */}
-        </div>
-        <div className='wrapper'>
+            <Img src={background} alt=""/>
+        </div>}
+
+        <div className='opacity-layer'></div>
+
+        <ContentWrapper>
             <div className='heroBannerContent'>
                 <span>Welcome.</span>
                 <span>Millions of movies, TV shows and people to discover. Explore now.</span>
@@ -44,7 +50,8 @@ const HeroBanner = () => {
                     {/* <img src={background} alt="kjd"/> */}
                 </div>
             </div>
-        </div>
+        </ContentWrapper>
+        
     </div>
   )
 }
