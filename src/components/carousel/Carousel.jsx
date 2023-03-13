@@ -21,7 +21,17 @@ const Carousel = ({data, loading}) => {
     const {url} = useSelector((state)=> state.home);
     const navigate = useNavigate();
 
-    const navigation = () => {};
+    const navigation = (dir) => {
+        const container = carouselContainer.current;
+        const scrollAmount = dir === "left" ? 
+        container.scrollLeft - (container.offsetWidth + 20) : 
+        container.scrollLeft + (container.offsetWidth + 20);
+
+        container.scrollTo({
+            left: scrollAmount,
+            behavior: "smooth",
+        })
+    };
 
     const skItem = () => {
         return(
