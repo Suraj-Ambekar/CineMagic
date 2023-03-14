@@ -11,6 +11,7 @@ import Geners from "../../../components/genres/Geners";
 import CircleRating from "../../../components/circleRating/CircleRating";
 import Img from "../../../components/lazyLoadImage/Img.jsx";
 import PosterFallback from "../../../assets/no-poster.png";
+import { PlayIcon } from "../PlayIcon";
 
 const DetailsBanner = ({ video, crew }) => {
 
@@ -18,6 +19,8 @@ const DetailsBanner = ({ video, crew }) => {
     const {data, loading} = useFetch(`/${mediaType}/${id}`);
 
     const {url} = useSelector((state) => state.home);
+
+    const _genres = data?.genres?.map((g) => g.id);
 
     const toHoursAndMinutes = (totalMinutes) => {
         const hours = Math.floor(totalMinutes / 60);
@@ -58,6 +61,15 @@ const DetailsBanner = ({ video, crew }) => {
                                         <div className="subtitle">
                                             {data.tagline}
                                         </div>
+                                        <Geners data={_genres} />
+                                        <div className="row">
+                                            <CircleRating 
+                                                rating={data.vote_average.toFixed(1)}
+                                            />
+                                            <div className="playbtn">
+                                                <PlayIcon />
+                                            </div>
+                                        </div>                                        
                                     </div>
                                 </div>
                             </ContentWrapper>
