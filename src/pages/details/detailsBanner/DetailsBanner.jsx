@@ -17,6 +17,8 @@ const DetailsBanner = ({ video, crew }) => {
     const {mediaType, id} = useParams();
     const {data, loading} = useFetch(`/${mediaType}/${id}`);
 
+    const {url} = useSelector((state) => state.home);
+
     const toHoursAndMinutes = (totalMinutes) => {
         const hours = Math.floor(totalMinutes / 60);
         const minutes = totalMinutes % 60;
@@ -26,7 +28,15 @@ const DetailsBanner = ({ video, crew }) => {
     return (
         <div className="detailsBanner">
             {!loading ? (
-                <div>Details Content...</div>
+                <>
+                    {!!data && (
+                        <React.Fragment>
+                            <div className="backdrop-img">
+                                <Img src={url.backdrop + data.backdrop_path} />
+                            </div>
+                        </React.Fragment>
+                    )}
+                </>
             ) : (
                 <div className="detailsBannerSkeleton">
                     <ContentWrapper>
