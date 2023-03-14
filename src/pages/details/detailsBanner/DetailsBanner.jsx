@@ -12,8 +12,13 @@ import CircleRating from "../../../components/circleRating/CircleRating";
 import Img from "../../../components/lazyLoadImage/Img.jsx";
 import PosterFallback from "../../../assets/no-poster.png";
 import { PlayIcon } from "../PlayIcon";
+import VideoPopup from "../../../components/videoPopup/VideoPopup";
+
 
 const DetailsBanner = ({ video, crew }) => {
+
+    const [show, setShow] = useState(false);
+    const [videoId, setVideoId] = useState(null);
 
     const {mediaType, id} = useParams();
     const {data, loading} = useFetch(`/${mediaType}/${id}`);
@@ -69,7 +74,10 @@ const DetailsBanner = ({ video, crew }) => {
                                             <CircleRating 
                                                 rating={data.vote_average.toFixed(1)}
                                             />
-                                            <div className="playbtn" onClick={()=> {}}>
+                                            <div className="playbtn" onClick={()=> {
+                                                setShow(true)
+                                                setVideoId(video.key)
+                                            }}>
                                                 <PlayIcon />
                                                 <span className="text">Watch Trailer</span>
                                             </div>
@@ -162,6 +170,12 @@ const DetailsBanner = ({ video, crew }) => {
                                                                          
                                     </div>
                                 </div>
+                                <VideoPopup 
+                                    show={show}
+                                    setShow={setShow}
+                                    videoId={videoId}
+                                    setVideoId={setVideoId}
+                                />
                             </ContentWrapper>
                         </React.Fragment>
                     )}
