@@ -6,6 +6,7 @@ import "./style.scss";
 
 import { fetchDataFromApi } from "../../utils/api";
 import ContentWrapper from "../../components/contentWrapper/ContentWrapper";
+import Spinner from "../../components/spinner/Spinner";
 import noResults from "../../assets/no-results.png";
 
 const SearchResult = () => {
@@ -40,7 +41,9 @@ const SearchResult = () => {
   },[query]);
 
   return (
-    <div>SearchResult</div>
+    <div>
+      {loading && <Spinner initial={true} />}
+    </div>
   )
 }
 
