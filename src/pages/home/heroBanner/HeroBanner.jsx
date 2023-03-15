@@ -26,6 +26,16 @@ const HeroBanner = () => {
             navigate(`/search/${query}`);
         }
     }
+
+    const submitHandler =(event) => {
+        event.preventDefault();
+        // console.log(input);
+        setQuery(event.target.value);
+        if(query.length > 0) {
+            navigate(`/search/${query}`);
+        }
+    }
+
   return (
     <div className='heroBanner'>
         {!loading && 
@@ -39,16 +49,17 @@ const HeroBanner = () => {
             <div className='heroBannerContent'>
                 <span className='title' >Welcome.</span>
                 <span className='subTitle' >Millions of movies, TV shows and people to discover. Explore now.</span>
-                <div className='searchInput'>
-                    <input
-                        type="text"
-                        placeholder='Search for a movie or tv show....'
-                        onKeyUp={searchQueryHandler}
-                        onChange={(event)=> setQuery(event.target.value)}
-                    />
-                    <button>Search</button>
-                    {/* <img src={background} alt="kjd"/> */}
-                </div>
+                {/* <div className='searchInput'> */}
+                    <form className='searchInput' onSubmit={submitHandler}>
+                        <input
+                            type="text"
+                            placeholder='Search for a movie or tv show....'
+                            onKeyUp={searchQueryHandler}
+                            onChange={(event)=> setQuery(event.target.value)}
+                        />
+                        <button>Search</button>
+                    </form>
+                {/* </div> */}
             </div>
         </ContentWrapper>
         
