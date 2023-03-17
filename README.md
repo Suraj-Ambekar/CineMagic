@@ -6,7 +6,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Suraj-Ambekar/CineMagic">
-    <img src="./src/assets/logo.png" alt="CineMagic" width="252" height="85">
+    <img src="https://github.com/Suraj-Ambekar/CineMagic/blob/main/src/assets/logo.png" alt="CineMagic">
   </a>
 
   <h2 align="center">CineMagic - Suraj Ambekar</h2>
